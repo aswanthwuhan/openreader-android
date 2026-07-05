@@ -1,0 +1,11 @@
+--- a/src/lib/server/admin/seed.ts
++++ b/src/lib/server/admin/seed.ts
+@@ -321,7 +321,7 @@
+       apiKeyCiphertext: enc.ciphertext,
+       apiKeyIv: enc.iv,
+       apiKeyLast4: apiKeyLast4(apiKey),
+-      defaultModel: 'kokoro',
++      defaultModel: process.env.API_BASE?.includes('8005') ? 'kitten-tts' : 'kokoro',
+       enabled: 1,
+       createdAt: now,
+       updatedAt: now,

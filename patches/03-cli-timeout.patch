@@ -1,0 +1,11 @@
+--- a/packages/bootstrap/src/cli.mjs
++++ b/packages/bootstrap/src/cli.mjs
+@@ -456,7 +456,7 @@
+         console.error(`Embedded compute-worker failed to start: ${error instanceof Error ? error.message : String(error)}`);
+         scheduleFatalShutdown('compute-worker', null, null, 'failed to start');
+       });
+-      await waitForEndpoint(`http://127.0.0.1:${embeddedWorkerPort}/health/ready`, 30, 'Embedded compute-worker');
++      await waitForEndpoint(`http://127.0.0.1:${embeddedWorkerPort}/health/ready`, 90, 'Embedded compute-worker');
+       console.log(`Embedded compute-worker is ready at http://127.0.0.1:${embeddedWorkerPort}`);
+     } else if (!runtimeEnv.COMPUTE_WORKER_URL?.trim() || !runtimeEnv.COMPUTE_WORKER_TOKEN?.trim()) {
+       throw new Error('COMPUTE_WORKER_URL and COMPUTE_WORKER_TOKEN are required when embedded compute worker startup is disabled.');

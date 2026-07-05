@@ -2,6 +2,13 @@
 
 Run [OpenReader](https://github.com/richardr1126/openreader) (self-hosted audiobook/document reader with TTS) on Android using Termux + proot Ubuntu.
 
+## One-Line Install
+
+```bash
+# Install Termux from F-Droid, then paste this in Termux:
+pkg update -y && pkg install -y git && git clone https://github.com/aswanthwuhan/openreader-android.git && cd openreader-android && bash setup.sh
+```
+
 ## What's Included
 
 | Service | Port | Description |
@@ -19,6 +26,10 @@ Run [OpenReader](https://github.com/richardr1126/openreader) (self-hosted audiob
 - Internet connection (for initial setup only)
 
 ## Quick Start
+
+> **Automated:** Run `bash setup.sh` from this repo — it does steps 1–10 below automatically.
+
+> **Manual:** Follow steps 1–10 below if you prefer to set things up yourself.
 
 ### 1. Install Termux packages
 

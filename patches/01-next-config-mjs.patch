@@ -1,0 +1,14 @@
+--- a/next.config.ts
++++ b/next.config.ts
+@@ -86,6 +86,11 @@
+         },
+       ];
+     }
++    config.module.rules.push({
++      test: /\.mjs$/,
++      include: /node_modules/,
++      resolve: { fullySpecified: false },
++    });
+     return config;
+   },
+ };

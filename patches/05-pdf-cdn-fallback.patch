@@ -1,0 +1,24 @@
+--- a/src/lib/client/pdf.ts
++++ b/src/lib/client/pdf.ts
+@@ -106,10 +106,17 @@
+   try {
+     if (typeof window !== 'undefined') {
+       const useLegacy = shouldUseLegacyBuild();
+-      // Use local worker file instead of unpkg
+-      const workerSrc = useLegacy
+-        ? new URL('pdfjs-dist/legacy/build/pdf.worker.min.mjs', import.meta.url).href
+-        : new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).href;
++      let workerSrc: string;
++      try {
++        workerSrc = useLegacy
++          ? new URL('pdfjs-dist/legacy/build/pdf.worker.min.mjs', import.meta.url).href
++          : new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).href;
++      } catch {
++        const pdfjsVersion = '4.8.69';
++        workerSrc = useLegacy
++          ? `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/legacy/build/pdf.worker.min.mjs`
++          : `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.mjs`;
++      }
+       pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+       pdfjs.GlobalWorkerOptions.workerPort = null;
+     }
