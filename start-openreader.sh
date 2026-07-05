@@ -1,11 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# start-openreader.sh - Let the bootstrap CLI handle everything
+# start-openreader.sh
 
 echo "Stopping old services..."
-kill -9 $(pgrep proot) 2>/dev/null; sleep 2
-fuser -k 3004/tcp 2>/dev/null; fuser -k 8333/tcp 2>/dev/null
-fuser -k 8081/tcp 2>/dev/null; fuser -k 4222/tcp 2>/dev/null
-fuser -k 8005/tcp 2>/dev/null; sleep 1
+kill -9 $(pgrep proot) 2>/dev/null
+kill -9 $(pgrep nats-server) 2>/dev/null
+kill -9 $(pgrep seaweedfs) 2>/dev/null
+sleep 3
+fuser -k 3004/tcp 8333/tcp 8081/tcp 4222/tcp 8005/tcp 8222/tcp 8223/tcp 2>/dev/null
+sleep 2
 
 echo "Starting KittenTTS..."
 setsid proot-distro login ubuntu --shared-tmp -- bash -c '
@@ -27,7 +29,7 @@ exec pnpm dev
 ' > ~/openreader.log 2>&1 &
 
 echo "Waiting for bootstrap to start all services..."
-sleep 50
+sleep 60
 
 echo ""
 echo "============================================"
