@@ -1,6 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# start-openreader.sh - Start OpenReader + KittenTTS on Android (Termux + proot)
-set -e
+# start-openreader.sh - Let the bootstrap CLI handle everything
 
 echo "Stopping old services..."
 kill -9 $(pgrep proot) 2>/dev/null; sleep 2
