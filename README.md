@@ -96,7 +96,16 @@ cp stop-openreader.sh ~/
 chmod +x ~/start-openreader.sh ~/stop-openreader.sh
 ```
 
-### 9. Start everything
+### 9. Download layout model
+
+```bash
+# Inside proot
+bash /root/openreader-setup/download-model.sh
+```
+
+This downloads the PP-DocLayoutV3 ONNX model (~142MB) into `/root/openreader/docstore/model/`.
+
+### 10. Start everything
 
 ```bash
 ~/start-openreader.sh
@@ -104,7 +113,7 @@ chmod +x ~/start-openreader.sh ~/stop-openreader.sh
 
 Wait ~60 seconds for all services to start, then open `http://localhost:3004` in your browser.
 
-### 10. Stop everything
+### 11. Stop everything
 
 ```bash
 ~/stop-openreader.sh
@@ -114,7 +123,7 @@ Wait ~60 seconds for all services to start, then open `http://localhost:3004` in
 
 - **proot Ubuntu** provides a full Linux environment without root access
 - **OpenReader bootstrap CLI** (`pnpm dev`) auto-starts embedded SeaweedFS, NATS, and compute worker
-- **PP-DocLayoutV3 ONNX model** (~142MB) is downloaded automatically on first PDF upload for layout detection
+- **PP-DocLayoutV3 ONNX model** (~142MB) is pre-downloaded via `download-model.sh` for layout detection (from [Bei0001/PP-DocLayoutV3-ONNX](https://huggingface.co/Bei0001/PP-DocLayoutV3-ONNX), Apache-2.0)
 - **KittenTTS** provides lightweight ONNX-based text-to-speech (~25MB model, no PyTorch required)
 - **setsid** ensures background processes survive shell exit
 
